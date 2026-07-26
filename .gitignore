@@ -1,0 +1,42 @@
+# Build and temporary files
+build/
+bin/
+obj/
+node_modules/
+__pycache__/
+*.spec
+*.zip
+*.bak
+_vmp_build_tmp/
+_vmp_tiny_tmp/
+_triple_vmp_build/
+crackme_challenge/target/
+crackme_impossible/target/
+
+# Large temporary files
+ZeroEntropy.exe
+ZeroEntropy_protected.exe
+MaxEntropy_VMP.exe
+CrackMe_Impossible_Protected.exe
+
+# Unrelated files and folders
+MalumMenu.cs
+MalumMenu.cs.bak
+MalumMenu.csproj
+RobloxProject/
+translated_logs/
+vanguard_live_server.py
+vanguard_log_translator.bat
+vanguard_log_translator.py
+public/
+server.js
+package.json
+package-lock.json
+melodi.wav
+srt.cpp
+bypass.cpp
+bypass.py
+holyc.holyc.txt
+fpsoyun.zip
+live_translator/
+debugger/
