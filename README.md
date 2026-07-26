@@ -1,49 +1,130 @@
-# Vanguard Log Translator & Decryptor
+# 🛡️ VMProtector Pro
 
-Riot Vanguard anti-cheat çekirdek (`vgk.sys`) ve istemci (`vgc.exe`) log dosyalarını otomatik olarak çözen (decrypt) ve anlaşılır, temiz açıklamalara çeviren evrensel bir Windows aracıdır.
+**Windows hedef dosyalarını sanal makine tabanlı koruma ile sanallaştırarak korumalı `.exe` dosyasına dönüştüren gelişmiş bir yazılım koruma aracı.**
 
-Vanguard logları normalde ham olay kodları (Event ID), bellek adresleri, işlem numaraları (PID) ve hex kodlarından ibarettir. Bu araç, gizlilik amacıyla tüm sistem belirteçlerini (PIDs, hex pointer'lar, handle nesneleri) temizler ve karmaşık olay numaralarını okunabilir açıklamalara dönüştürür.
-
-## 🚀 Öne Çıkan Özellikler
-
-* **🔑 Hibrit Şifre Çözücü ve Çevirici**: Şifreli log dosyalarını (`pvpv` sihirli başlığı ile başlayanları) otomatik olarak algılar ve çeviriye başlamadan önce yerleşik RC4 şifre çözme mekanizmasıyla çözer.
-* **🔒 Güvenlik & Anonimleştirme**: Kişisel gizlilik ve güvenlik için ham işlem tanıtıcılarını (handles), iş parçacığı kimliklerini (TID), işlem kimliklerini (PID) ve çekirdek bellek adreslerini loglardan tamamen temizler.
-* **🌐 VGC & VGK Çevirisi**: Sürücü olaylarını (Örn: `B000003C`, `B000003B`) ve istemci olaylarını (Örn: `139`, `163`, `164`, `199`) doğrudan anlaşılır teknik açıklamalara dönüştürür.
-* **📁 Toplu Klasör İşleme**: Tek bir log dosyasını veya çok sayıda log dosyası içeren komple bir klasörü tek seferde işleyebilir.
-* **📂 Akıllı Masaüstü Yolu Çözücü**: Türkçe karakterli masaüstü yollarında (`Masaüstü` gibi) veya OneDrive yönlendirmelerinde yaşanan karakter kodlaması (Unicode) hatalarını önlemek için Windows kayıt defterinden gerçek masaüstü yolunu dinamik olarak tespit eder.
-* **🛡️ Yetki Sınırı Koruması**: Windows'un korumalı sistem klasörlerine (Örn: `C:\Program Files\Riot Vanguard\Logs`) doğrudan yazma izni verilmediğinde, çıktıları otomatik olarak masaüstünüzdeki `Translated_Vanguard_Logs` klasörüne yönlendirir.
-
-## 📋 Çeviri Örnekleri
-
-### Vanguard Sürücü Derleme Bilgisi
-* **Öncesi**: `[2025-08-17_09-46-13] [!] [1000004A]: 1.17.12.4 ; Wed Aug  6 17:39:45 2025`
-* **Sonrası**: `[2025-08-17_09-46-13] Vanguard driver build version 1.17.12.4 compiled on Wednesday August 6, 17:39:45 2025.`
-
-### Süreç Takibi (Surveillance)
-* **Öncesi**: `[2025-08-17_09-46-23] [!] [B000003C]: 912 ; FFFF950F830B6080 ; 0 ; 1 ; csrss.exe`
-* **Sonrası**: `[2025-08-17_09-46-23] Process placed under surveillance: Process csrss is now closely monitored.`
-
-### İstemci Gecikme Testi
-* **Öncesi**: `[2025-11-28_17-18-20] [19736][11/28/25 17:18:20][i]: 163: 110`
-* **Sonrası**: `[2025-11-28_17-18-20] Latency check: Network round-trip latency of 110 milliseconds verified.`
+VMProtector Pro, hedef dosyanızın makine kodunu (x86/x64) kendi özel sanal makine mimarisine çevirerek, tersine mühendislik (reverse engineering) ve statik analiz girişimlerine karşı güçlü bir koruma katmanı sağlar.
 
 ---
 
-## 🛠️ Kullanım
+## ⚡ Özellikler
 
-### Hızlı Başlangıç (Windows)
-1. [vanguard_log_translator.bat](vanguard_log_translator.bat) dosyasına çift tıklayın.
-2. Açılan menüde `3` yazıp onaylayarak Vanguard loglarının varsayılan konumunu taratın. Çözülen ve çevrilen loglar masaüstünüzdeki `Translated_Vanguard_Logs` klasörüne otomatik olarak çıkartılacaktır.
-3. Dilerseniz herhangi bir log dosyasını veya klasörünü doğrudan `.bat` dosyasının üzerine sürükleyip bırakarak da çevirebilirsiniz.
+- **VM Sanallaştırma** — Hedef binary'nin kod bölümünü (.text) özel bir bytecode formatına dönüştürür ve gömülü bir sanal makine yorumlayıcısı (interpreter) ile çalıştırır.
+- **Opcode Shuffling** — Her derleme işleminde sanal makine opcode değerleri rastgele yeniden atanır. Aynı dosya iki kez korunsa bile üretilen bytecode tamamen farklı olur.
+- **XOR Şifreleme** — Üretilen bytecode, rastgele üretilen bir XOR anahtarıyla şifrelenir. Statik analiz araçları ham bytecode'u okuyamaz.
+- **PE Analizi** — `pefile` ve `capstone` kütüphaneleri ile hedef dosyanın EntryPoint'i, kod bölümü ve x86/x64 komut seti otomatik olarak analiz edilir.
+- **Anti-Debug Desteği** — Koruma katmanında hata ayıklayıcı (debugger) algılama mekanizması.
+- **Gerçek Zamanlı İlerleme Çubuğu** — Derleme süreci boyunca PyInstaller çıktısı gerçek zamanlı takip edilir ve ilerleme çubuğu sahte değil, gerçek aşamalara göre güncellenir.
+- **Modern GUI** — CustomTkinter tabanlı, koyu temalı ve kullanımı kolay masaüstü arayüzü.
 
-### Komut Satırı (CLI)
-Log dosyasını veya klasörünü komut satırından manuel çevirmek için:
+---
+
+## 📸 Ekran Görüntüsü
+
+> Uygulama açıldığında karşınıza çıkan ana ekran:
+
+```
+┌─────────────────────────────────────────────────────┐
+│  🛡️ VM PROTECTOR PRO                                │
+│                                                     │
+│  [Dosya Seç]  C:\hedef\program.exe                  │
+│                                                     │
+│  ☑ Anti-Debug Koruması                              │
+│  ☑ Opcode Randomization                             │
+│                                                     │
+│  [████████████████████░░░░] %85 - Building EXE...   │
+│                                                     │
+│  ⚡ DOSYAYI KORU VE DERLE (.EXE)                    │
+│                                                     │
+│  Log:                                               │
+│  > İşlem Başlatıldı: program.exe                    │
+│  > Hedef Türü: PE Windows Binary                    │
+│  > ✅ Tamamlandı: program_protected.exe             │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🚀 Kullanım
+
+### Hazır EXE ile (Kurulum Gerektirmez)
+`VMProtector.exe` dosyasını indirip çift tıklayarak doğrudan çalıştırabilirsiniz.
+
+### Kaynak Koddan Çalıştırma
 ```bash
-python vanguard_log_translator.py <girdi_yolu> <cikti_yolu>
+# Gerekli kütüphaneleri yükleyin
+pip install customtkinter pefile capstone pyinstaller
+
+# Uygulamayı başlatın
+python vm_protector_app/main.py
+```
+
+### Komut Satırından Derleme
+```bash
+python -m PyInstaller --noconfirm --onefile --windowed ^
+  --name VMProtector ^
+  --add-data "vm_protector_app;vm_protector_app" ^
+  vm_protector_app/main.py
+```
+
+---
+
+## 🏗️ Mimari
+
+```
+vm_protector_app/
+├── main.py              # Uygulama giriş noktası
+├── gui.py               # CustomTkinter GUI arayüzü
+├── protector_core.py    # Koruma motoru (PE analizi + derleme)
+├── vm_engine.py         # Sanal makine opcode tanımları ve bytecode encoder
+└── vm_runtime_stub.py   # Korunan EXE'ye gömülen VM yorumlayıcı kodu
+```
+
+### Koruma Akışı
+
+```
+Hedef .exe / .py
+       │
+       ▼
+  PE Analizi (pefile + capstone)
+       │
+       ▼
+  Opcode Shuffling (rastgele opcode haritası)
+       │
+       ▼
+  Bytecode Encode (özel VM instruction set)
+       │
+       ▼
+  XOR Şifreleme (rastgele anahtar)
+       │
+       ▼
+  VM Stub Loader Üretimi (gömülü interpreter)
+       │
+       ▼
+  PyInstaller ile .exe Derleme
+       │
+       ▼
+  Korumalı .exe Çıktısı ✅
 ```
 
 ---
 
 ## ⚙️ Gereksinimler
-* **İşletim Sistemi**: Windows 10 / 11
-* **Python**: Python 3.x yüklü olmalıdır.
+
+| Bileşen | Minimum Versiyon |
+|---|---|
+| İşletim Sistemi | Windows 10 / 11 |
+| Python | 3.10+ |
+| customtkinter | 5.x |
+| pefile | 2023.x+ |
+| capstone | 5.x |
+| PyInstaller | 6.x |
+
+---
+
+## 📄 Lisans
+
+Bu proje eğitim ve araştırma amaçlıdır. Kötüye kullanımdan kullanıcı sorumludur.
+
+---
+
+**Geliştirici:** [trikoliban](https://github.com/trikoliban)
