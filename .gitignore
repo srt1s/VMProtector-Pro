@@ -1,42 +1,57 @@
-# Build and temporary files
-build/
+# Build & temporary artifacts
 bin/
 obj/
-node_modules/
-__pycache__/
+release/
+build/
+dist/
+out/
 *.spec
 *.zip
 *.bak
+*.log
+_verify_err.txt
 _vmp_build_tmp/
 _vmp_tiny_tmp/
 _triple_vmp_build/
-crackme_challenge/target/
-crackme_impossible/target/
+native/VMProtector.NativeStub/out/
 
-# Large temporary files
-ZeroEntropy.exe
-ZeroEntropy_protected.exe
-MaxEntropy_VMP.exe
-CrackMe_Impossible_Protected.exe
+# Root compiled outputs (built locally via build.ps1 or attached to GitHub Releases)
+VMProtector.exe
+vmp-cli.exe
 
-# Unrelated files and folders
-MalumMenu.cs
-MalumMenu.cs.bak
-MalumMenu.csproj
+# Scratch / unrelated playground files
+*.exe
+!native/**
+CrackMe*/
+crackme*/
+compiler/
+pc_guardian/
+webcam_monitor/
+accurate_entropy_engine.py
+build_vmprotector_exe.py
+bypass.py
+crackme_solution_keygen.py
+create_triple_vm.py
+custom_builder.py
+entropy_gui_app.py
+main.py
+rebuild_all_apps.py
+shannon_entropy.py
+vanguard_live_server.py
+vanguard_log_translator.py
+vanguard_log_translator.bat
+__pycache__/
+MalumMenu*
 RobloxProject/
 translated_logs/
-vanguard_live_server.py
-vanguard_log_translator.bat
-vanguard_log_translator.py
 public/
 server.js
 package.json
 package-lock.json
+node_modules/
 melodi.wav
 srt.cpp
 bypass.cpp
-bypass.py
 holyc.holyc.txt
-fpsoyun.zip
 live_translator/
 debugger/
